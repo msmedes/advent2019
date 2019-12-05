@@ -9,12 +9,12 @@ def read_file(file_name: str) -> List[int]:
 
 
 def process_instruction(arr: List[int], index: int):
-    one, two, three, four = arr[index], arr[index +
-                                            1], arr[index+2], arr[index+3]
-    if one == 1:
-        arr[four] = arr[two] + arr[three]
-    if one == 2:
-        arr[four] = arr[two] * arr[three]
+    opcode, pos1, pos2, dest = arr[index], arr[index +
+                                               1], arr[index+2], arr[index+3]
+    if opcode == 1:
+        arr[dest] = arr[pos1] + arr[pos2]
+    if opcode == 2:
+        arr[dest] = arr[pos1] * arr[pos2]
 
 
 def iterate_instructions(intcodes: List[int]):
