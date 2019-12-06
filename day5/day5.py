@@ -39,6 +39,7 @@ def iterate_instructions(program: List[int], input_val: int):
         elif opcode == 4:
             location = program[pos+1]
             output = program[location]
+            print(output)
             pos += 2
         elif opcode == 5:
             pos = val2 if val1 != 0 else pos + 3
