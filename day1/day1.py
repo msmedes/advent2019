@@ -25,7 +25,7 @@ def fuel_for_fuel(mass: int) -> int:
 
 def main():
     masses = read_file("input.txt")
-    # print(sum_fuel(masses))
+    print(sum_fuel(masses))
     print(sum(fuel_for_fuel(mass) for mass in masses))
 
 

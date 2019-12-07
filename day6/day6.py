@@ -52,22 +52,6 @@ def bfs(orbits: Orbits, root: str, target: str) -> int:
             visited.add(obj)
 
 
-# test = ['COM)B',
-#         'B)C',
-#         'C)D',
-#         'D)E',
-#         'E)F',
-#         'B)G',
-#         'G)H',
-#         'D)I',
-#         'E)J',
-#         'J)K',
-#         'K)L',
-#         'K)1',
-#         'I)2']
-
-# test = [line.split(')') for line in test]
-# test = add_orbits(test)
 orbits = read_file("input.txt")
 orbits = add_orbits(orbits)
 print(len(bfs(orbits, '1', '2')))
