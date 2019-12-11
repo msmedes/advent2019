@@ -2,7 +2,6 @@ from typing import List, Tuple
 
 from enum import Enum
 from collections import deque, defaultdict
-import time
 
 
 class Opcode(Enum):
@@ -113,10 +112,12 @@ class Intcode():
         return Opcode(opcode), Mode(mode_1), Mode(mode_2), Mode(mode_3)
 
     def _location(self, pos: int, mode: Mode) -> int:
+        value = 0
         if mode == Mode.POSITION:
-            return self.program[pos]
+            value = self.program[pos]
         if mode == Mode.RELATIVE:
-            return self.base + self.program[pos]
+            value = self.base + self.program[pos]
+        return value
 
 
 def read_file(file_name="input.txt") -> List[int]:
@@ -136,42 +137,6 @@ def run_program(program: List[int], inputs: List[int]):
     except EndProgram:
         return output
 
-
-# TEST1 = [109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99]
-
-# print(run_program(TEST1, []))
-
-
-# TEST2 = [1102, 34915192, 34915192, 7, 4, 7, 99, 0]
-# print(run_program(TEST2, []))
-
-
-# TEST3 = [104, 1125899906842624, 99]
-# assert run_program(TEST3, [])[0] == TEST3[1]
-
-# TEST4 = [109, -1, 4, 1, 99]  # outputs -1
-# assert run_program(TEST4, []) == [-1]
-
-# TEST5 = [109, -1, 104, 1, 99]  # outputs 1
-# assert run_program(TEST5, []) == [1]
-
-# TEST6 = [109, -1, 204, 1, 99]  # outputs 109
-# assert run_program(TEST6, []) == [109]
-
-# TEST7 = [109, 1, 9, 2, 204, -6, 99]  # outputs 204
-# assert run_program(TEST7, []) == [204]
-
-# TEST8 = [109, 1, 109, 9, 204, -6, 99]  # outputs 204
-# assert run_program(TEST8, []) == [204]
-
-# TEST9 = [109, 1, 209, -1, 204, -106, 99]  # outputs 204
-# assert run_program(TEST9, []) == [204]
-
-# TEST10 = [109, 1, 3, 3, 204, 2, 99]  # outputs the input
-# print(run_program(TEST10, []))
-
-# TEST11 = [109, 1, 203, 2, 204, 2, 99]  # outputs the input
-# print(run_program(TEST11, []))
 
 BOOST = read_file()
 print(run_program(BOOST, [2]))
